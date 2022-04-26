@@ -1,0 +1,13 @@
+[Unit]
+Description=Monitor for changes to IP and port
+After=piavpn.target pia-connect.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/monitor-ip-port.sh
+ExecStop=/usr/bin/pkill monitor-ip-port.sh
+StandardOutput=journal
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target 
