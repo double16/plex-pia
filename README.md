@@ -1,4 +1,8 @@
 # plex-pia
+[![GitHub Issues](https://img.shields.io/github/issues-raw/double16/plex-pia.svg)](https://github.com/double16/plex-pia/issues)
+[![Build](https://github.com/double16/plex-pia/workflows/Build/badge.svg)](https://github.com/double16/plex-pia/actions?query=workflow%3ABuild)
+[![](https://img.shields.io/badge/Donate-Buy%20me%20a%20coffee-orange.svg)](https://www.buymeacoffee.com/patDj)
+
 Runs Plex Media Server through Private Internet Access VPN with port forwarding
 
 If your Plex Media Server cannot allow incoming connects because of your ISP, using the Private Internet Access VPN
@@ -6,7 +10,7 @@ can help. This container will handle connecting PMS through PIA and configuring 
 need to configure anything in your home router. This container will update PMS with the VPN IP and port as needed.
 
 You must have a [Private Internet Access](https://privateinternetaccess.com) account for this to work. The `plexpia`
-volume is used to hold credentials. The `/config/pia-auth.conf` contains the user name on line 1 and password on line 2.
+volume is used to hold credentials. The `/config/pia-auth.conf` contains the username on line 1 and password on line 2.
 If your Plex Media Server requires a token for local network connections, put the token in `/config/plex-token.txt`.
 
 Example docker-compose.yml:
@@ -70,4 +74,5 @@ EOF
 ```
 
 If the plex-pia container is restarted, it may be necessary to restart the plex container to correct the docker
-network routing. This is not required if only the PIA VPN is reconnected.
+network routing. If you know how to fix this, create an issue or pull request with documentation.
+
