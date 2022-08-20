@@ -20,6 +20,7 @@ RUN curl -L -o /usr/bin/systemctl https://github.com/gdraheim/docker-systemctl-r
     chmod +x /usr/bin/systemctl
 
 ADD *.service /etc/systemd/system/
+ADD healthcheck.sh /healthcheck.sh
 ADD monitor-ip-port.sh return-route.sh plex-configure.sh pia-configure.sh /usr/local/bin/
 COPY push-ip-port.sh /etc/cron.hourly/push-ip-port
 
@@ -30,7 +31,7 @@ RUN systemctl enable tun pia-auth pia-configure pia-connect monitor-ip-port &&\
     echo 'Defaults:pia !requiretty' > /etc/sudoers.d/pia &&\
     echo '%pia ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers.d/pia &&\
     chmod 440 /etc/sudoers.d/pia &&\
-    chmod +x /usr/local/bin/*.sh /etc/cron.hourly/push-ip-port
+    chmod +x /usr/local/bin/*.sh /etc/cron.hourly/push-ip-port /healthcheck.sh
 
 USER pia
 WORKDIR /pia
@@ -42,3 +43,4 @@ USER root
 VOLUME /config
 
 CMD ["/usr/bin/systemctl","default"]
+HEALTHCHECK CMD /healthcheck.sh
