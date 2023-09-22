@@ -1,7 +1,7 @@
-FROM ubuntu:20.04
+FROM ubuntu:22.04
 
-ARG PIA_VERSION=3.3.1-06924
-ARG SYSTEMCTL_VER=1.5.4505
+ARG PIA_VERSION=3.5-07703
+ARG SYSTEMCTL_VER=1.5.7106
 ARG APT_PROXY
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -30,7 +30,7 @@ RUN systemctl enable tun pia-auth pia-configure pia-connect monitor-ip-port &&\
     chown -R pia:pia /pia &&\
     echo 'Defaults:pia !requiretty' > /etc/sudoers.d/pia &&\
     echo '%pia ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers.d/pia &&\
-    chmod 440 /etc/sudoers.d/pia &&\
+    chmod 0440 /etc/sudoers.d/pia &&\
     chmod +x /usr/local/bin/*.sh /etc/cron.hourly/push-ip-port /healthcheck.sh
 
 USER pia
