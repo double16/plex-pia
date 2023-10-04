@@ -22,8 +22,10 @@ if [[ -z "${PLEX_TOKEN}" ]] && [[ -s /config/plex-token.txt ]]; then
     PLEX_TOKEN="$(</config/plex-token.txt)"
 fi
 
+PLEX_HOST="127.0.0.1:32400"
+
 export CURL_OPTS="--verbose --retry 9 --retry-connrefused --retry-delay 10"
 
-#curl ${CURL_OPTS} -X PUT "http://localhost:32400/:/prefs?customConnections=http%3A%2F%2F${IP}%3A${PORT}%2F&X-Plex-Token=${PLEX_TOKEN}"
-curl ${CURL_OPTS} -X PUT "http://localhost:32400/:/prefs?ManualPortMappingMode=1&X-Plex-Token=${PLEX_TOKEN}"
-curl ${CURL_OPTS} -X PUT "http://localhost:32400/:/prefs?ManualPortMappingPort=${PORT}&X-Plex-Token=${PLEX_TOKEN}"
+#curl ${CURL_OPTS} -X PUT "http://${PLEX_HOST}/:/prefs?customConnections=http%3A%2F%2F${IP}%3A${PORT}%2F&X-Plex-Token=${PLEX_TOKEN}"
+curl ${CURL_OPTS} -X PUT "http://${PLEX_HOST}/:/prefs?ManualPortMappingMode=1&X-Plex-Token=${PLEX_TOKEN}"
+curl ${CURL_OPTS} -X PUT "http://${PLEX_HOST}/:/prefs?ManualPortMappingPort=${PORT}&X-Plex-Token=${PLEX_TOKEN}"
