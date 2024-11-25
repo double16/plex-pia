@@ -14,7 +14,8 @@ RUN if [ -n "${APT_PROXY}" ]; then echo "Acquire::HTTP::Proxy \"${APT_PROXY}\";\
     rm -f /etc/apt/apt.conf.d/01proxy &&\
     rm -rf /tmp/*
 
-RUN curl -L -o /tmp/pia.run https://installers.privateinternetaccess.com/download/pia-linux-${PIA_VERSION}.run
+ADD download.sh /tmp/
+RUN /tmp/download.sh ${PIA_VERSION} && rm /tmp/download.sh
 
 RUN curl -L -o /usr/bin/systemctl https://github.com/gdraheim/docker-systemctl-replacement/raw/${SYSTEMCTL_VER}/files/docker/systemctl3.py &&\
     chmod +x /usr/bin/systemctl
