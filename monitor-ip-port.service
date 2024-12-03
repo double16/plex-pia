@@ -4,6 +4,7 @@ After=piavpn.target pia-connect.target
 
 [Service]
 Type=simple
+Environment="LD_LIBRARY_PATH=/opt/piavpn/lib"
 ExecStart=/usr/local/bin/monitor-ip-port.sh
 ExecStop=/usr/bin/pkill monitor-ip-port.sh
 StandardOutput=journal

@@ -22,10 +22,10 @@ RUN curl -L -o /usr/bin/systemctl https://github.com/gdraheim/docker-systemctl-r
 
 ADD *.service /etc/systemd/system/
 ADD healthcheck.sh /healthcheck.sh
-ADD monitor-ip-port.sh return-route.sh plex-configure.sh pia-configure.sh /usr/local/bin/
+ADD monitor-ip-port.sh return-route.sh plex-configure.sh pia-auth.sh pia-configure.sh /usr/local/bin/
 COPY push-ip-port.sh /etc/cron.hourly/push-ip-port
 
-RUN systemctl enable tun pia-auth pia-configure pia-connect monitor-ip-port &&\
+RUN systemctl enable pia-auth pia-configure pia-connect monitor-ip-port &&\
     useradd --home-dir /pia pia &&\
     mkdir -p /pia &&\
     chown -R pia:pia /pia &&\

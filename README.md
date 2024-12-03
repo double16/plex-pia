@@ -24,11 +24,14 @@ services:
     image: ghcr.io/double16/plex-pia:main
     restart: unless-stopped
     cap_add:
-      - net_admin
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun
+    privileged: true
     hostname: plex
+    # PIA DNS: https://helpdesk.privateinternetaccess.com/kb/articles/using-pia-dns-in-custom-configurations
     dns:
-      - 209.222.18.222
-      - 209.222.18.218
+      - 10.0.0.242
     ports:
       - 32400:32400/tcp
       - 3005:3005/tcp
