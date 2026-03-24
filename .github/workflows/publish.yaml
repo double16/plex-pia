@@ -76,7 +76,7 @@ jobs:
 
       - uses: actions/delete-package-versions@v5
         with:
-          package-name: ${{ env.IMAGE_NAME}}
+          package-name: 'plex-pia'
           package-type: 'container'
           min-versions-to-keep: 10
           delete-only-untagged-versions: 'true'
